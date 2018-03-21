@@ -1,0 +1,38 @@
+
+.list-item-type
+{
+    float: left;
+    height: 25px;
+    margin-right: 5px;
+}
+
+.list-item-infos
+{
+    position: relative;
+    float: left;
+}
+
+
+.first-list-item
+{
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+}
+
+.last-list-item
+{
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+.list-item
+{
+    font-size: .7em;
+    width: 100%;
+    border: 1px solid greenyellow;
+}
+
+.list-item-content
+{
+    margin-left: 40px;
+}

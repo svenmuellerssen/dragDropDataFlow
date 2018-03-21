@@ -1,0 +1,10 @@
+<div class="list-item list-item-infos" draggable [dragScope]="'email'" [dragData]="email">
+  <div class="list-item-type">
+    <i>E-Mail</i>
+  </div>
+  <div class="list-item-title">{{email.sender}}</div>
+  <div class="list-item-content">
+    <span>{{email.subject}}</span>
+    <span>{{email.content|slice:0:30}}...</span>
+  </div>
+</div>

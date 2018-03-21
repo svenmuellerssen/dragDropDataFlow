@@ -1,0 +1,14 @@
+<div *ngIf="project" class="project-detail-view" draggable [dragScope]="'projectDetail'" [dragData]="project">
+  <h3>{{project.name}} {{project.date | date:'dd.MM.yyyy' }}</h3>
+  <p class="project-reminder-text">
+    {{project.reminderText}}
+  </p>
+</div>
+<div class="item-details-drop-zone">
+  <div class="droppable-zone trash-zone" droppable [dropScope]="'projectDetail'" (onDrop)="throwAway($event)">
+    &nbsp;
+  </div>
+  <div class="droppable-zone archive-zone" droppable [dropScope]="'projectDetail'" (onDrop)="archive($event)">
+      &nbsp;
+  </div>
+</div>

@@ -1,0 +1,353 @@
+<html>
+
+<head>
+    <title>Tiny CRM - Prototype</title>
+    <style type="text/css">
+        body {
+            padding: 0;
+            margin: 0;
+            background: none;
+
+        }
+
+        .main-window {
+            width: 100%;
+            height: 100%;
+        }
+
+        .left-section,
+        .right-section {
+            position: relative;
+            z-index: -3;
+            float: left;
+            width: 15%;
+            height: 95%;
+        }
+
+        .middle-section {
+            float: left;
+            width: 70%;
+            height: 100%;
+            /**/
+            position: relative;
+            z-index: -3;
+        }
+
+        .upper-left-container,
+        .lower-left-container,
+        .upper-right-container,
+        .lower-right-container {
+            width: 95%;
+            border: 1px solid seagreen;
+            border-radius: 0.3em;
+            padding: 5px;
+        }
+
+        .upper-left-list,
+        .lower-left-list,
+        .upper-right-list,
+        .lower-right-list {
+            position: relative;
+            width: 99%;
+            height: 50%;
+            padding: 2px;
+            border: 1px solid slateblue;
+            border-radius: 0.5em;
+            z-index: 50;
+        }
+
+        .item-button-label {
+            width: 150px;
+        }
+
+        .left-list-item,
+        .left-list-item-active {
+            display: block;
+            margin: 1px 0 1px 0;
+            width: 99%;
+            -webkit-transition: width 350ms ease-out 100ms;
+            transition: width 350ms ease-out 100ms;
+            height: 25px;
+            line-height: 25px;
+            border: 1px solid slateblue;
+            background-color: slateblue;
+            opacity: 1;
+            border-radius: 0.3em;
+            z-index: 100;
+        }
+
+        .item-action-button:nth-child(n) {
+            float: right;
+            position: relative;
+            width: 25px;
+            height: 25px;
+            visibility: hidden;
+            -webkit-transition: right 150ms ease-out 100ms, bottom 150ms ease-out 100ms, visibility 150ms ease-out 150ms;
+            transition: right 150ms ease-out 100ms, bottom 150ms ease-out 100ms, visibility 150ms ease-out 150ms;
+        }
+
+        .item-action-button:nth-child(2) {
+            right: 0;
+            bottom: 25px;
+        }
+
+        .item-action-button:nth-child(3) {
+            right: -25px;
+            bottom: 25px;
+        }
+
+        .item-action-button:nth-child(4) {
+            right: -50;
+            bottom: 25px;
+        }
+
+        .left-list-item-active {
+            width: 120%;
+            display: block;
+        }
+
+        .left-list-item-active>div:nth-child(2) {
+            float: right;
+            position: relative;
+            right: -35px;
+            bottom: 25px;
+            width: 25px;
+            height: 25px;
+            line-height: 25px;
+            border-radius: 50%;
+            background-color: slateblue;
+            text-align: center;
+            visibility: visible;
+            -webkit-transition: right 350ms ease-out 100ms, bottom 350ms ease-out 300ms, visibility 150ms ease-out 250ms;
+            transition: right 350ms ease-out 100ms, bottom 350ms ease-out 300ms, visibility 150ms ease-out 250ms;
+
+            z-index: 101;
+        }
+
+        .left-list-item-active>div:nth-child(3) {
+            float: right;
+            position: relative;
+            right: -25;
+            bottom: 60px;
+            width: 25px;
+            height: 25px;
+            line-height: 25px;
+            border-radius: 50%;
+            background-color: slateblue;
+            text-align: center;
+            visibility: visible;
+            -webkit-transition: right 350ms ease-out 100ms, bottom 350ms ease-out 300ms, visibility 150ms ease-out 250ms;
+            transition: right 350ms ease-out 100ms, bottom 350ms ease-out 300ms, visibility 150ms ease-out 250ms;
+            z-index: 102;
+        }
+
+        .left-list-item-active>div:nth-child(4) {
+            float: right;
+            position: relative;
+            right: -50px;
+            bottom: -10px;
+            width: 25px;
+            height: 25px;
+            line-height: 25px;
+            border-radius: 50%;
+            background-color: slateblue;
+            text-align: center;
+            visibility: visible;
+            -webkit-transition: right 350ms ease-out 100ms, bottom 350ms ease-out 300ms, visibility 150ms ease-out 250ms;
+            transition: right 350ms ease-out 100ms, bottom 350ms ease-out 300ms, visibility 150ms ease-out 250ms;
+            z-index: 103;
+        }
+
+        .right-list-item,
+        .right-list-item-active {
+            display: block;
+            margin: 1px 0 1px 0;
+            width: 99%;
+            /* Moving list item with appearing buttons outside. */
+            -webkit-transition: margin-left 350ms ease-out 100ms, padding-left 350ms ease-out 100ms;
+            transition: margin-left 350ms ease-out 100ms, padding-left 350ms ease-out 100ms;
+            height: 25px;
+            line-height: 25px;
+            background-color: slateblue;
+            opacity: 1;
+            border: 1px solid slateblue;
+            border-radius: 0.5em;
+            z-index: 100;
+        }
+
+        .right-list-item-active {
+            padding-left: 21%;
+            margin-left: -21%;
+        }
+
+        .left-detail-section, .right-detail-section {
+            width: 43%;
+            height: 50%;
+        }
+        /* Details */
+        .left-detail-section {
+            float: left;
+            margin-left: 7%;
+        }
+        .right-detail-section {
+            float: right;
+            margin-right: 7%;
+        }
+
+.upper-left-details, .upper-right-details, .lower-left-details, .lower-right-details {
+            width: 100%;
+            height: 101%;
+}
+        .information-container {
+            height: 25px;
+            width: 300px;
+        }
+        .detail-label, .detail-data {
+            float: left;
+            height: 25px;
+            line-height: 25px;
+        }
+.detail-label {
+    width: 100px;
+}
+        .detail-data {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-window">
+        <div class="left-section">
+            <div class="upper-left-container">
+                <div class="upper-left-list">
+                    <div>
+                        <div class="left-list-item">Company 1</div>
+                    </div>
+                    <div><div class="left-list-item">Company 2</div></div>
+                    <div><div class="left-list-item">Company 3</div></div>
+                    <div><div class="left-list-item">
+                        <div class="item-button-label">Company 4</div>
+                        <div class="item-action-button">A</div>
+                        <div class="item-action-button">E</div>
+                        <div class="item-action-button">D</div>
+                    </div></div>
+                    <div><div class="left-list-item">Company 5</div></div>
+                    <div><div class="left-list-item">Company 6</div></div>
+                </div>
+            </div>
+            <div class="lower-left-container">
+                <div class="lower-left-list">
+                    <div class="left-list-item">Dokument 1</div>
+                    <div class="left-list-item">Dokument 2</div>
+                    <div class="left-list-item">Dokument 3</div>
+                    <div class="left-list-item">
+                        <div class="item-button-label">Dokument 4</div>
+                        <div class="item-action-button">A</div>
+                        <div class="item-action-button">E</div>
+                        <div class="item-action-button">D</div>
+                    </div>
+                    <div class="left-list-item">Dokument 5</div>
+                    <div class="left-list-item">Dokument 6</div>
+                </div>
+            </div>
+        </div>
+        <div class="middle-section">
+            <div class="left-detail-section">
+                <div class="upper-left-details">
+                    <fieldset>
+                        <legend>Company</legend>
+                        <div class="information-container">
+                            <div class="detail-label">Name: </div>
+                            <div class="detail-data">Die.Mueller.schafft</div>
+                        </div>
+                        <div class="information-container">
+                            <div class="detail-label">Strasse: </div>
+                            <div class="detail-data">Blablastr. 54</div>
+                        </div>
+                        <div class="information-container">
+                            <div class="detail-label">PLZ: </div>
+                            <div class="detail-data">16543</div>
+                        </div>
+                        <div class="information-container">
+                            <div class="detail-label">Stadt: </div>
+                            <div class="detail-data">Berlin</div>
+                        </div>
+                        <div class="information-container">
+                            <div class="detail-label">Telefon: </div>
+                            <div class="detail-data">0000321232</div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="lower-left-details">
+                    <fieldset>
+                        <legend>Dokument</legend>
+                        <div class="information-container">
+                            <div class="detail-label">Name: </div>
+                            <div class="detail-data">Die.Mueller.schafft</div>
+                        </div>
+                        <div class="information-container">
+                            <div class="detail-label">Strasse: </div>
+                            <div class="detail-data">Blablastr. 54</div>
+                        </div>
+                        <div class="information-container">
+                            <div class="detail-label">PLZ: </div>
+                            <div class="detail-data">16543</div>
+                        </div>
+                        <div class="information-container">
+                            <div class="detail-label">Stadt: </div>
+                            <div class="detail-data">Berlin</div>
+                        </div>
+                        <div class="information-container">
+                            <div class="detail-label">Telefon: </div>
+                            <div class="detail-data">0000321232</div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="right-detail-section">
+                <div class="upper-right-details">
+                    <fieldset>
+                        <legend>Kontakt</legend>
+                        <div class="detail-label">Title: </div>
+                        <div class="detail-data">Webtexte lektorieren</div>
+                    </fieldset>
+                </div>
+                <div class="lower-right-details">
+                    <fieldset>
+                        <legend>Project</legend>
+                        <div class="detail-label">Title: </div>
+                        <div class="detail-data">Webtexte lektorieren</div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <div class="right-section">
+            <div class="upper-right-container">
+                <div class="upper-right-list">
+                    <div class="right-list-item">Kontakt 1</div>
+                    <div class="right-list-item">Kontakt 2</div>
+                    <div class="right-list-item right-list-item-active">Kontakt 3</div>
+                    <div class="right-list-item">Kontakt 4</div>
+                    <div class="right-list-item">Kontakt 5</div>
+                    <div class="right-list-item">Kontakt 6</div>
+                </div>
+            </div>
+
+            <div class="lower-right-container">
+                <div class="lower-right-list">
+                    <div class="right-list-item">Projekt 1</div>
+                    <div class="right-list-item">Projekt 2</div>
+                    <div class="right-list-item right-list-item-active">Projekt 3</div>
+                    <div class="right-list-item">Projekt 4</div>
+                    <div class="right-list-item">Projekt 5</div>
+                    <div class="right-list-item">Projekt 6</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>

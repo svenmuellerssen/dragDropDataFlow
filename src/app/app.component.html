@@ -1,0 +1,15 @@
+<div>
+  <div class="detail-view" droppable [dropScope]="['email', 'systemStatus', 'projectReminder', 'bancAccountInfo']" (onDrop)="displayItemDetails($event)">
+    <ng-template itemInject></ng-template>
+  </div>
+  <div class="list ">
+    <div class="mixed-item-list">
+      <div class="" *ngFor="let item of incomingItems" [ngSwitch]="item.type">
+          <project-item [project]="item" *ngSwitchCase="1"></project-item>
+          <bank-account-item [bankAccountItem]="item" *ngSwitchCase="2"></bank-account-item>
+          <email-item [email]="item" *ngSwitchCase="3"></email-item>
+          <system-status-item [systemStatusItem]="item" *ngSwitchCase="4"></system-status-item>
+      </div>
+    </div>
+  </div>
+</div>
